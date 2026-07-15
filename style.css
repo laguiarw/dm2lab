@@ -1055,7 +1055,145 @@ h3 {
 }
 
 /* ==========================================================================
-   14. RESPONSIVE / MOBILE LAYOUT
+   14. LARGE DESKTOP LAYOUT
+   These refinements begin beyond normal laptop widths. They give a 27-inch
+   display a more intentional scale without changing the existing tablet,
+   laptop, or mobile layouts.
+   ========================================================================== */
+
+@media (min-width: 2000px) {
+  :root {
+    --header-uzh-logo-height: 52px;
+    --font-size-eyebrow: 14px;
+  }
+
+  .nav-wrap {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .logo-full {
+    width: 260px;
+  }
+
+  /* Keep team cards closer to their comfortable laptop dimensions while the
+   * surrounding page canvas continues to expand. */
+  .team-grid {
+    max-width: 1260px;
+  }
+
+  .person {
+    gap: 20px;
+    padding: 20px 22px;
+  }
+
+  .avatar {
+    width: 118px;
+    height: 118px;
+  }
+
+  /* Publication-specific type was previously fixed at laptop-sized pixels. */
+  .publication-section-title {
+    font-size: 26px;
+  }
+
+  .publication-card {
+    grid-template-columns: minmax(0, 1fr) 100px;
+    gap: 26px;
+    padding: 24px;
+  }
+
+  .publication-card--no-cover {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .publication-title {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  .publication-card .publication-meta,
+  .publication-card .publication-note {
+    margin-top: 8px;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .publication-cover {
+    max-width: 84px;
+    max-height: 112px;
+  }
+
+  .publication-link {
+    padding: 6px 12px;
+    font-size: 15px;
+  }
+
+  .publication-coverage summary {
+    font-size: 16px;
+  }
+
+  .home-page .home-intro > .container {
+    max-width: 1600px;
+  }
+
+  .home-page .two-col-intro {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 80px;
+  }
+
+  .home-page .lead,
+  .about-page .lead {
+    font-size: 20px;
+  }
+
+  .home-page .intro-image img {
+    width: min(100%, 620px);
+  }
+
+  .about-page .about-intro-grid {
+    grid-template-columns: 1.22fr 0.78fr;
+    gap: 72px;
+  }
+
+  .about-page .contact-details {
+    font-size: 15px;
+  }
+}
+
+/* On a wide, tall display the two short informational pages read as centered
+ * compositions instead of content followed by a large accidental void. */
+@media (min-width: 2000px) and (min-height: 900px) {
+  .home-page main,
+  .about-page main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-page .home-intro {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    width: 100%;
+    padding-top: 64px;
+    padding-bottom: 120px;
+  }
+
+  .about-page main {
+    justify-content: center;
+    padding-top: 64px;
+    padding-bottom: 120px;
+  }
+
+  .about-page .page-title,
+  .about-page .about-section {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* ==========================================================================
+   15. RESPONSIVE / MOBILE LAYOUT
    Everything below applies only to screens 860px wide or narrower.
    ========================================================================== */
 
