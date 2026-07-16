@@ -1055,29 +1055,31 @@ h3 {
 }
 
 /* ==========================================================================
-   14. LARGE DESKTOP LAYOUT
-   These refinements begin beyond normal laptop widths. They give a 27-inch
-   display a more intentional scale without changing the existing tablet,
-   laptop, or mobile layouts.
+   14. DESKTOP SCALING
+   Both common desktop monitors use the same composition. Values interpolate
+   gradually with viewport width, avoiding an abrupt layout change when a
+   browser window moves between a 1920px and 2560px display.
    ========================================================================== */
 
-@media (min-width: 2000px) {
+@media (min-width: 1600px) {
   :root {
-    --header-uzh-logo-height: 52px;
-    --font-size-eyebrow: 14px;
+    --header-uzh-logo-height:
+      clamp(44px, calc(20px + 1.25vw), 52px);
+    --font-size-eyebrow:
+      clamp(13px, calc(10px + 0.16vw), 14px);
   }
 
   .nav-wrap {
-    padding-top: 18px;
-    padding-bottom: 18px;
+    padding-top: clamp(14px, calc(6px + 0.47vw), 18px);
+    padding-bottom: clamp(14px, calc(6px + 0.47vw), 18px);
   }
 
   .logo-full {
-    width: 260px;
+    width: clamp(210px, calc(140px + 4.69vw), 260px);
   }
 
-  /* Keep team cards closer to their comfortable laptop dimensions while the
-   * surrounding page canvas continues to expand. */
+  /* Team cards keep a stable, compact size on both desktop monitors instead
+   * of expanding with the full page canvas. */
   .team-grid {
     max-width: 1260px;
   }
@@ -1092,15 +1094,17 @@ h3 {
     height: 118px;
   }
 
-  /* Publication-specific type was previously fixed at laptop-sized pixels. */
+  /* Publication typography scales continuously across desktop widths. */
   .publication-section-title {
-    font-size: 26px;
+    font-size: clamp(22px, calc(17px + 0.35vw), 26px);
   }
 
   .publication-card {
-    grid-template-columns: minmax(0, 1fr) 100px;
-    gap: 26px;
-    padding: 24px;
+    grid-template-columns:
+      minmax(0, 1fr)
+      clamp(86px, calc(44px + 2.2vw), 100px);
+    gap: clamp(22px, calc(10px + 0.63vw), 26px);
+    padding: clamp(20px, calc(8px + 0.63vw), 24px);
   }
 
   .publication-card--no-cover {
@@ -1108,62 +1112,82 @@ h3 {
   }
 
   .publication-title {
-    font-size: 20px;
+    font-size: clamp(16px, calc(11px + 0.35vw), 20px);
     line-height: 1.4;
   }
 
   .publication-card .publication-meta,
   .publication-card .publication-note {
-    margin-top: 8px;
-    font-size: 18px;
+    margin-top: clamp(6px, calc(2px + 0.31vw), 8px);
+    font-size: clamp(15px, calc(10.5px + 0.29vw), 18px);
     line-height: 1.6;
   }
 
   .publication-cover {
-    max-width: 84px;
-    max-height: 112px;
+    max-width: clamp(72px, calc(36px + 1.88vw), 84px);
+    max-height: clamp(96px, calc(48px + 2.5vw), 112px);
   }
 
   .publication-link {
-    padding: 6px 12px;
-    font-size: 15px;
+    padding:
+      clamp(5px, calc(2px + 0.16vw), 6px)
+      clamp(10px, calc(4px + 0.31vw), 12px);
+    font-size: clamp(13px, calc(9px + 0.23vw), 15px);
   }
 
   .publication-coverage summary {
-    font-size: 16px;
+    font-size: clamp(14px, calc(10px + 0.23vw), 16px);
   }
 
   .home-page .home-intro > .container {
-    max-width: 1600px;
+    max-width: clamp(1380px, 72vw, 1600px);
   }
 
   .home-page .two-col-intro {
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 80px;
+    gap: clamp(56px, 3.13vw, 80px);
   }
 
   .home-page .lead,
   .about-page .lead {
-    font-size: 20px;
+    font-size: clamp(18px, calc(12px + 0.31vw), 20px);
   }
 
   .home-page .intro-image img {
-    width: min(100%, 620px);
+    width: min(100%, clamp(540px, calc(360px + 10.16vw), 620px));
   }
 
   .about-page .about-intro-grid {
-    grid-template-columns: 1.22fr 0.78fr;
-    gap: 72px;
+    grid-template-columns: 1.18fr 0.82fr;
+    gap: clamp(56px, 2.81vw, 72px);
+  }
+
+  .about-page .contact-card {
+    width: 100%;
+    padding:
+      clamp(18px, 1vw, 24px)
+      clamp(28px, 1.5vw, 36px);
+  }
+
+  .about-page .contact-row {
+    gap: clamp(16px, 0.9vw, 20px);
+    padding: clamp(20px, 1.15vw, 24px) 0;
   }
 
   .about-page .contact-details {
-    font-size: 15px;
+    padding-top: 6px;
+    font-size: clamp(16px, calc(11px + 0.31vw), 17px);
+  }
+
+  .about-page .contact-icon {
+    width: clamp(42px, 2.3vw, 48px);
+    height: clamp(42px, 2.3vw, 48px);
+    border-radius: 14px;
   }
 }
 
-/* On a wide, tall display the two short informational pages read as centered
- * compositions instead of content followed by a large accidental void. */
-@media (min-width: 2000px) and (min-height: 900px) {
+/* On tall desktop windows the two short informational pages use the same
+ * vertically balanced composition on both monitors. */
+@media (min-width: 1600px) and (min-height: 800px) {
   .home-page main,
   .about-page main {
     display: flex;
@@ -1175,14 +1199,14 @@ h3 {
     flex: 1;
     align-items: center;
     width: 100%;
-    padding-top: 64px;
-    padding-bottom: 120px;
+    padding-top: clamp(64px, 5vh, 80px);
+    padding-bottom: clamp(88px, 8vh, 120px);
   }
 
   .about-page main {
     justify-content: center;
-    padding-top: 64px;
-    padding-bottom: 120px;
+    padding-top: clamp(64px, 5vh, 80px);
+    padding-bottom: clamp(88px, 8vh, 120px);
   }
 
   .about-page .page-title,
