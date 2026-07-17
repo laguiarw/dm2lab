@@ -536,12 +536,12 @@ h3 {
 }
 
 /* The opening paragraph occupies the wider left column and the contact card
- * occupies the narrower right column. align-items:start prevents the
- * card from stretching to match the paragraph's height. */
+ * occupies the narrower right column. Center their vertical midpoints without
+ * stretching either item to match the other's height. */
 .about-intro-grid {
   display: grid;
-  align-items: start;
-  grid-template-columns: 1.12fr 0.88fr;
+  align-items: center;
+  grid-template-columns: 1.16fr 0.84fr;
   gap: 56px;
 }
 
@@ -574,6 +574,15 @@ h3 {
   width: clamp(42px, 2.3vw, 48px);
   height: clamp(42px, 2.3vw, 48px);
   border-radius: 14px;
+}
+
+/* Preserve the 58% paragraph edge used to align with the UZH header logo,
+ * while giving the card extra room by letting it extend into the grid gap. */
+@media (min-width: 861px) {
+  .about-intro-grid .contact-card {
+    width: calc(100% + 20px);
+    max-width: none;
+  }
 }
 
 /* These paragraphs sit below the two-column row and span the full container.
@@ -1166,11 +1175,6 @@ h3 {
 
   .home-page .intro-image img {
     width: min(100%, clamp(540px, calc(360px + 10.16vw), 620px));
-  }
-
-  .about-page .about-intro-grid {
-    grid-template-columns: 1.12fr 0.88fr;
-    gap: clamp(56px, 2.81vw, 72px);
   }
 
 }
