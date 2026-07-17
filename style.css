@@ -541,7 +541,7 @@ h3 {
 .about-intro-grid {
   display: grid;
   align-items: start;
-  grid-template-columns: 1.16fr 0.84fr;
+  grid-template-columns: 1.12fr 0.88fr;
   gap: 56px;
 }
 
@@ -553,15 +553,27 @@ h3 {
 
 
 .about-intro-grid .contact-card {
-  padding: 12px 28px; /* First number controls vertical padding */
+  width: 100%;
+  padding:
+    clamp(18px, 1vw, 24px)
+    clamp(28px, 1.5vw, 36px);
 }
 
 .about-intro-grid .contact-row {
-  padding: 20px 0; /* First number controls vertical row spacing */
+  gap: clamp(16px, 0.9vw, 20px);
+  padding: clamp(20px, 1.15vw, 24px) 0;
 }
 
 .about-intro-grid .contact-details {
-  line-height: 1.4; /* Controls spacing between address lines */
+  padding-top: 6px;
+  font-size: clamp(16px, calc(11px + 0.31vw), 17px);
+  line-height: 1.4;
+}
+
+.about-intro-grid .contact-icon {
+  width: clamp(42px, 2.3vw, 48px);
+  height: clamp(42px, 2.3vw, 48px);
+  border-radius: 14px;
 }
 
 /* These paragraphs sit below the two-column row and span the full container.
@@ -1157,32 +1169,10 @@ h3 {
   }
 
   .about-page .about-intro-grid {
-    grid-template-columns: 1.18fr 0.82fr;
+    grid-template-columns: 1.12fr 0.88fr;
     gap: clamp(56px, 2.81vw, 72px);
   }
 
-  .about-page .contact-card {
-    width: 100%;
-    padding:
-      clamp(18px, 1vw, 24px)
-      clamp(28px, 1.5vw, 36px);
-  }
-
-  .about-page .contact-row {
-    gap: clamp(16px, 0.9vw, 20px);
-    padding: clamp(20px, 1.15vw, 24px) 0;
-  }
-
-  .about-page .contact-details {
-    padding-top: 6px;
-    font-size: clamp(16px, calc(11px + 0.31vw), 17px);
-  }
-
-  .about-page .contact-icon {
-    width: clamp(42px, 2.3vw, 48px);
-    height: clamp(42px, 2.3vw, 48px);
-    border-radius: 14px;
-  }
 }
 
 /* On tall desktop windows the two short informational pages use the same
