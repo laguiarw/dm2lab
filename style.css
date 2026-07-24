@@ -71,6 +71,7 @@
   --page-gutter: 24px;        /* Left/right space on small screens */
   --section-spacing: 68px;    /* Vertical space inside normal sections */
   --eyebrow-top-spacing: 62px; /* Navigation bar to page eyebrow */
+  --about-eyebrow-gap-adjustment: 30px; /* Extra About eyebrow-to-text gap */
   --grid-gap: 18px;           /* Space between cards */
 
   /* --- Header logos -----------------------------------------------------
@@ -531,8 +532,9 @@ h3 {
 }
 
 .about-section {
-  /* The eyebrow already provides the same 20px gap used on the Home page. */
-  padding-top: 0;
+  /* Adds to the eyebrow's shared 20px bottom margin. Together these values
+   * match the larger visible gap created by the Home illustration row. */
+  padding-top: var(--about-eyebrow-gap-adjustment);
 }
 
 /* The opening paragraph occupies the wider left column and the contact card
@@ -574,15 +576,6 @@ h3 {
   width: clamp(42px, 2.3vw, 48px);
   height: clamp(42px, 2.3vw, 48px);
   border-radius: 14px;
-}
-
-/* Preserve the 58% paragraph edge used to align with the UZH header logo,
- * while giving the card extra room by letting it extend into the grid gap. */
-@media (min-width: 861px) {
-  .about-intro-grid .contact-card {
-    width: calc(100% + 20px);
-    max-width: none;
-  }
 }
 
 /* These paragraphs sit below the two-column row and span the full container.
@@ -1088,6 +1081,8 @@ h3 {
       clamp(44px, calc(20px + 1.25vw), 52px);
     --font-size-eyebrow:
       clamp(13px, calc(10px + 0.16vw), 14px);
+    --erc-logo-height: 65px;
+    --snsf-logo-height: 35px;
   }
 
   .nav-wrap {
@@ -1161,7 +1156,7 @@ h3 {
   }
 
   .home-page .home-intro > .container {
-    max-width: clamp(1380px, 72vw, 1600px);
+    max-width: var(--content-width);
   }
 
   .home-page .two-col-intro {
@@ -1203,9 +1198,13 @@ h3 {
     padding-bottom: clamp(88px, 8vh, 120px);
   }
 
-  .about-page .page-title,
-  .about-page .about-section {
+  .about-page .page-title {
     padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .about-page .about-section {
+    padding-top: var(--about-eyebrow-gap-adjustment);
     padding-bottom: 0;
   }
 }
@@ -1236,6 +1235,12 @@ h3 {
 }
 
 @media (max-width: 860px) {
+  /* Home stacks at this width and no longer gains extra spacing from vertical
+   * centering beside the illustration, so About returns to the shared 20px. */
+  .about-section {
+    padding-top: 0;
+  }
+
   /* At this breakpoint the Team grid becomes one column. Change 620px to
    * adjust its maximum tablet width; phones still use their available width. */
   .team-grid {
