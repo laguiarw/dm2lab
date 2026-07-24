@@ -329,6 +329,10 @@ h3 {
   margin-left: auto;
 }
 
+.nav-toggle {
+  display: none;
+}
+
 .nav a {
   position: relative;
   padding: 6px 0;
@@ -1335,6 +1339,140 @@ h3 {
 }
 
 @media (max-width: 860px) {
+  /* Replace the horizontally scrolling link row with a compact, accessible
+   * dropdown menu on phones and small tablets. */
+  .nav-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 10px;
+    row-gap: 10px;
+  }
+
+  .header-logos {
+    min-width: 0;
+    gap: clamp(10px, 2.5vw, 20px);
+  }
+
+  .logo-full {
+    width: clamp(128px, 40vw, 170px);
+    max-width: none;
+  }
+
+  .header-uzh-logo {
+    height: clamp(27px, 7vw, 34px);
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 40px;
+    padding: 8px 11px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: transparent;
+    color: var(--ink-strong);
+    font: inherit;
+    font-size: var(--font-size-navigation);
+    font-weight: var(--weight-link);
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .nav-toggle:hover {
+    background: var(--soft);
+  }
+
+  .nav-toggle:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--blue) 35%, transparent);
+    outline-offset: 2px;
+  }
+
+  .nav-toggle-icon {
+    position: relative;
+    display: block;
+    width: 18px;
+    height: 14px;
+    border-top: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+  }
+
+  .nav-toggle-icon::before,
+  .nav-toggle-icon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transform: translateY(-50%);
+    transition: transform 150ms ease;
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle-icon {
+    border-color: transparent;
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle-icon::before {
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle-icon::after {
+    transform: translateY(-50%) rotate(-45deg);
+  }
+
+  .nav {
+    grid-column: 1 / -1;
+    display: grid;
+    width: 100%;
+    gap: 0;
+    margin: 0;
+    padding: 4px 0 0;
+    overflow: visible;
+    border-top: 1px solid var(--line);
+  }
+
+  .nav-wrap.nav-enabled .nav {
+    display: none;
+  }
+
+  .nav-wrap.nav-enabled.nav-open .nav {
+    display: grid;
+    animation: nav-menu-in 150ms ease-out;
+  }
+
+  .nav a {
+    padding: 11px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav a:last-child {
+    border-bottom: 0;
+  }
+
+  .nav a.active {
+    color: var(--blue);
+  }
+
+  .nav a.active::after {
+    display: none;
+  }
+
+  @keyframes nav-menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   /* Home stacks at this width and no longer gains extra spacing from vertical
    * centering beside the illustration, so About returns to the shared 20px. */
   .about-section {
@@ -1356,6 +1494,15 @@ h3 {
   .event-grid,
   .recode-funding {
     grid-template-columns: 1fr;
+  }
+
+  .about-intro-grid > * {
+    min-width: 0;
+  }
+
+  .about-intro-grid .contact-details {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .recode-funding-logo {
@@ -1381,26 +1528,23 @@ h3 {
   }
 }
 
-/* Extra-small screens: place the logo above the navigation. */
+/* Extra-small screens: keep the logos and compact toggle on one row. */
 @media (max-width: 620px) {
   .nav-wrap {
-    flex-wrap: wrap;
     gap: 10px;
   }
 
   .logo-full {
-    width: min(210px, 54vw);
+    width: clamp(128px, 40vw, 170px);
     max-width: none;
   }
 
-  /* Scale the UZH logo and inter-logo gap down only when needed so the two
-   * aligned logos continue to fit together on narrow phone screens. */
   .header-logos {
-    gap: min(var(--header-logo-gap), 4vw);
+    gap: clamp(10px, 2.5vw, 20px);
   }
 
   .header-uzh-logo {
-    height: min(var(--header-uzh-logo-height), 9vw);
+    height: clamp(27px, 7vw, 34px);
   }
 
   .publication-card {
@@ -1440,5 +1584,38 @@ h3 {
 
   .recode-funding-logo {
     height: 72px;
+  }
+}
+
+/* On the narrowest phones, keep the full accessible button name but show only
+ * its icon visually so both institutional logos retain readable proportions. */
+@media (max-width: 360px) {
+  .nav-toggle {
+    width: 40px;
+    padding-right: 9px;
+    padding-left: 9px;
+  }
+
+  .nav-toggle-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-wrap.nav-enabled.nav-open .nav {
+    animation: none;
+  }
+
+  .nav-toggle-icon::before,
+  .nav-toggle-icon::after {
+    transition: none;
   }
 }
