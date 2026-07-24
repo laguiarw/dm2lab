@@ -1100,6 +1100,21 @@ h3 {
     max-width: 1260px;
   }
 
+  /* Keep the Team eyebrow at its normal position, then center the card group
+   * in the remaining space above the footer on large screens. */
+  .team-page main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .team-page .page-title + .section {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+
   .person {
     gap: 20px;
     padding: 20px 22px;
