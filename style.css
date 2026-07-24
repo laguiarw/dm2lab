@@ -602,7 +602,92 @@ h3 {
 }
 
 /* ==========================================================================
-   8. TEAM CARDS
+   8. RECODE PROJECT PAGE
+   ========================================================================== */
+
+/* Keep the project title visually connected to the page eyebrow. */
+.recode-section {
+  padding-top: 28px;
+}
+
+.recode-intro h1 {
+  margin-bottom: 28px;
+}
+
+.recode-intro .lead {
+  max-width: none;
+  text-align: justify;
+}
+
+.recode-intro .lead + .lead {
+  margin-top: 18px;
+}
+
+.recode-agenda-title {
+  margin-top: 52px;
+}
+
+.recode-workstreams {
+  align-items: stretch;
+}
+
+.recode-workstream {
+  border-top: 3px solid rgba(48, 98, 255, 0.28);
+}
+
+.recode-workstream:nth-child(2) {
+  border-top-color: rgba(243, 171, 0, 0.42);
+}
+
+.recode-workstream:nth-child(3) {
+  border-top-color: rgba(48, 98, 255, 0.5);
+}
+
+.recode-workstream-number {
+  margin-bottom: 18px;
+  font-size: var(--font-size-tag);
+  font-weight: var(--weight-label);
+  letter-spacing: 0.18em;
+  color: var(--blue);
+}
+
+.recode-workstream p {
+  line-height: 1.7;
+}
+
+.recode-conclusion {
+  max-width: none;
+  margin-top: 32px;
+}
+
+.recode-funding {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(36px, 5vw, 80px);
+  margin-top: clamp(52px, 6vw, 88px);
+}
+
+.recode-funding .eyebrow {
+  margin-bottom: 14px;
+}
+
+.recode-funding h2 {
+  margin-bottom: 0;
+}
+
+.recode-funding .text-link {
+  margin-top: 20px;
+}
+
+.recode-funding-logo {
+  width: auto;
+  max-width: min(100%, 420px);
+  height: clamp(72px, 6vw, 108px);
+}
+
+/* ==========================================================================
+   9. TEAM CARDS
    ========================================================================== */
 
 .person {
@@ -1268,8 +1353,13 @@ h3 {
   .about-intro-grid,
   .grid.two,
   .grid.three,
-  .event-grid {
+  .event-grid,
+  .recode-funding {
     grid-template-columns: 1fr;
+  }
+
+  .recode-funding-logo {
+    justify-self: start;
   }
 
   .intro-image img {
@@ -1342,5 +1432,13 @@ h3 {
 
   .funding-logo--snsf {
     height: min(var(--snsf-logo-height), 60px);
+  }
+
+  .recode-intro .lead {
+    text-align: left;
+  }
+
+  .recode-funding-logo {
+    height: 72px;
   }
 }
